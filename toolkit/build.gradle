@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Butterknife requires Java 8.
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation rootProject.ext.defaultImplementationValues
+    testImplementation rootProject.ext.defaultTestImplementationValues
+    androidTestImplementation rootProject.ext.defaultTestDependenciesValues
+
+    // google material 支持库
+    api 'com.google.android.material:material:1.1.0'
+
+    //fastJson依赖
+    // api 'com.alibaba:fastjson:1.2.56'
+
+    // 项目app 中引用 这里引用有问题
+    // 滴滴-Doraemonkit开源工具使用
+    //https://github.com/didi/DoraemonKit
+    // debugApi 'com.didichuxing.doraemonkit:doraemonkit:3.0_beta3'
+    // releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:3.0_beta3'
+    // LeakCanary 已经在 doraemonkit 中动态集成，不需要自己再进行手动集成，只需要添加上面的依赖即可。
+    // debugImplementation 'com.didichuxing.doraemonkit:doraemonkit-leakcanary:3.0_beta3'
+
+    // 内存泄漏
+    debugApi 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+
+    // 日志框架
+    // https://github.com/orhanobut/logger
+    api 'com.orhanobut:logger:2.2.0'
+
+    // Toast框架
+    // https://github.com/getActivity/ToastUtils
+    api 'com.hjq:toast:8.0'
+
+    // 权限
+    // https://github.com/yanzhenjie/AndPermission
+    api 'com.yanzhenjie:permission:2.0.3'
+
+    // butterknife --> 准备 全面使用 ViewBinding
+    // https://github.com/JakeWharton/butterknife
+    api 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+}
+
+// aar
+apply from: '../maven.gradle'
