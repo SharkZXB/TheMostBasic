@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply from: '../maven.gradle'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -35,5 +36,3 @@ dependencies {
 
 }
 
-// aar
-apply from: '../maven.gradle'

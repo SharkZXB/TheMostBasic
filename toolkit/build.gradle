@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply from: '../maven.gradle'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -48,7 +49,7 @@ dependencies {
     // debugImplementation 'com.didichuxing.doraemonkit:doraemonkit-leakcanary:3.0_beta3'
 
     // 内存泄漏
-    debugApi 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    debugApi 'com.squareup.leakcanary:leakcanary-android:2.2'
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
 
     // 日志框架
@@ -69,5 +70,4 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 }
 
-// aar
-apply from: '../maven.gradle'
+
