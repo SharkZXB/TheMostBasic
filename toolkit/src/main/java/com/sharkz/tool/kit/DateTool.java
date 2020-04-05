@@ -682,4 +682,109 @@ public class DateTool {
         return min + ":" + second;
     }
 
+
+    // =============================================================================================
+
+
+
+    /**
+     * 用于显示时间
+     */
+    public static final String TODAY = "今天";
+    public static final String YESTERDAY = "昨天";
+    public static final String TOMORROW = "明天";
+    public static final String BEFORE_YESTERDAY = "前天";
+    public static final String AFTER_TOMORROW = "后天";
+
+    /**
+     * 获取对应时间戳转换的今天、明天。。。。的日期 * @param time * @return
+     */
+    public static String getToday(Long time) {
+
+        Calendar pre = Calendar.getInstance();
+        Date predate = new Date(System.currentTimeMillis());
+        pre.setTime(predate);
+
+        Calendar cal = Calendar.getInstance();
+        Date date = null;
+        try {
+            date = new Date(time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        cal.setTime(date);
+
+        // 同一年
+        if (cal.get(Calendar.YEAR) == (pre.get(Calendar.YEAR))) {
+            int diffDay = cal.get(Calendar.DAY_OF_YEAR) - pre.get(Calendar.DAY_OF_YEAR);
+            return showDateDetail(diffDay, time);
+        }else{
+            return "不是今年";
+        }
+
+        // return time+"";
+    }
+
+    /**
+     * 将日期差显示为今天、明天或者星期 * @param diffDay * @param time * @return
+     */
+    private static String showDateDetail(int diffDay, Long time) {
+        switch (diffDay) {
+            case 0:
+                return TODAY;
+            case 1:
+                return TOMORROW;
+            case 2:
+                return AFTER_TOMORROW;
+            case -1:
+                return YESTERDAY;
+            case -2:
+                return BEFORE_YESTERDAY;
+//            default:
+//                return getWeek(time);
+        }
+        return "";
+    }
+
+//    /**
+//     * 计算周几
+//     */
+//    public static String getWeek(Long data) {
+//        SimpleDateFormat sdr = new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒");
+//        long lcc = Long.valueOf(data);
+//        int i = Integer.parseInt(data);
+//        String times = sdr.format(new Date(i * 1000L));
+//        Date date = null;
+//        int mydate = 0;
+//        String week = "";
+//        try {
+//            date = sdr.parse(times);
+//            Calendar cd = Calendar.getInstance();
+//            cd.setTime(date);
+//            mydate = cd.get(Calendar.DAY_OF_WEEK);
+//            // 获取指定日期转换成星期几
+//        } catch (ParseException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        if (mydate == 1) {
+//            week = "星期日";
+//        } else if (mydate == 2) {
+//            week = "星期一";
+//        } else if (mydate == 3) {
+//            week = "星期二";
+//        } else if (mydate == 4) {
+//            week = "星期三";
+//        } else if (mydate == 5) {
+//            week = "星期四";
+//        } else if (mydate == 6) {
+//            week = "星期五";
+//        } else if (mydate == 7) {
+//            week = "星期六";
+//        }
+//        return week;
+//    }
+
+
+
 }

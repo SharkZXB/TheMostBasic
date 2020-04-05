@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.sharkz.tool.kit.DateTool;
+import com.sharkz.tool.kit.LoggerTool;
+
 /**
  * ================================================
  * 作    者：SharkZ
@@ -19,5 +22,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        LoggerTool.getInstance().init();
+
+        String today = DateTool.getToday(1085670000000L);
+        LoggerTool.logERROR(today);
     }
 }

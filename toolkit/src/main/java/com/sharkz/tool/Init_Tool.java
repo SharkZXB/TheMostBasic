@@ -60,7 +60,7 @@ public class Init_Tool {
         /**
          * 内存泄漏
          */
-        LeakCanaryTool.setupLeakCanary(application);
+       // LeakCanaryTool.setupLeakCanary(application);
     }
 
 }
