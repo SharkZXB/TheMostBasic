@@ -2,10 +2,8 @@ package com.sharkz.themostbasic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.sharkz.tool.kit.DateTool;
-import com.sharkz.tool.kit.LoggerTool;
 
 /**
  * ================================================
@@ -23,9 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LoggerTool.getInstance().init();
 
-        String today = DateTool.getToday(1085670000000L);
-        LoggerTool.logERROR(today);
+        startActivity(new Intent(this, TestSwipeBackLayoutActivity.class));
+
     }
 }

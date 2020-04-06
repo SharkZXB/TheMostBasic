@@ -52,10 +52,6 @@ dependencies {
     debugApi 'com.squareup.leakcanary:leakcanary-android:2.2'
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
 
-    // 日志框架
-    // https://github.com/orhanobut/logger
-    api 'com.orhanobut:logger:2.2.0'
-
     // Toast框架
     // https://github.com/getActivity/ToastUtils
     api 'com.hjq:toast:8.0'
@@ -68,6 +64,10 @@ dependencies {
     // https://github.com/JakeWharton/butterknife
     api 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
+    // 日志框架
+    // https://github.com/orhanobut/logger
+    api 'com.orhanobut:logger:2.2.0'
 }
 
 

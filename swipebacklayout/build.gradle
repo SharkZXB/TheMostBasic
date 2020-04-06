@@ -46,5 +46,9 @@ dependencies {
     // implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
     // kotlin扩展（可选）
     // implementation 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
+
+
+    api 'com.sharkz.sdk:global:1.0.0'
+
 }
 

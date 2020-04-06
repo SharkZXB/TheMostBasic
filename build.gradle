@@ -22,7 +22,13 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
+        // 这里使用了 本地 maven 下面的路径是本地仓库路径
+        maven { url 'file:////Users/sharkz/Desktop/Sunflowertreasuredian/SDK/' }
+
+        // git 资源仓库地址
+        // maven { url "https://raw.githubusercontent.com/GitHub用户名/仓库项目名/master" }
+        // maven { url "https://raw.githubusercontent.com/SharkZXB/SDK/master" }
     }
 }
 

@@ -34,6 +34,7 @@ import java.util.List;
  * 描述:滑动返回帮助类
  */
 public class BGASwipeBackHelper {
+
     private Activity mActivity;
     private Delegate mDelegate;
     private BGASwipeBackLayout mSwipeBackLayout;

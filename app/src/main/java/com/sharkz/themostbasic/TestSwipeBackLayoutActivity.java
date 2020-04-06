@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class TestSwipeBackLayoutActivity extends AppCompatActivity {
+import com.sharkz.swipebacklayout.SwipeBackLayoutActivity;
+
+public class TestSwipeBackLayoutActivity extends SwipeBackLayoutActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_swipe_back_layout);
     }
+
 }

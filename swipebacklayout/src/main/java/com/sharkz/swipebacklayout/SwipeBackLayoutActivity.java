@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.sharkz.swipebacklayout.layout.BGASwipeBackHelper;
 
-import java.util.logging.Logger;
-
 /**
  * ================================================
  * 作    者：SharkZ
@@ -72,6 +70,10 @@ public class SwipeBackLayoutActivity extends AppCompatActivity implements BGASwi
     public void onSwipeBackLayoutExecuted() {
         mSwipeBackHelper.swipeBackward();
     }
+
+
+    // =============================================================================================
+
 
     @Override
     public void onBackPressed() {

@@ -4,7 +4,6 @@ import android.app.Application;
 
 //import com.sharkz.tool.kit.DoraemonKitTool;
 import com.hjq.toast.ToastUtils;
-import com.sharkz.tool.kit.LeakCanaryTool;
 import com.sharkz.tool.kit.LoggerTool;
 import com.sharkz.tool.kit.PreferenceUtils;
 
