@@ -24,6 +24,7 @@ import java.lang.ref.WeakReference;
  * 描述:左侧阴影控件
  */
 class BGASwipeBackShadowView extends FrameLayout {
+
     private static final String TAG = BGASwipeBackShadowView.class.getSimpleName();
     private static final float WE_CHAT_STYLE_MAX_OFFSET = 0.75f;
     private Activity mActivity;

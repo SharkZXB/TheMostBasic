@@ -4,7 +4,6 @@ package com.sharkz.tool.kit;
 import android.app.Application;
 import android.content.Context;
 
-import leakcanary.LeakCanary;
 
 /**
  * ================================================

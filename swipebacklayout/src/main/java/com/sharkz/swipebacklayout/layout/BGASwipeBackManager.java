@@ -36,8 +36,17 @@ import java.util.Stack;
  * 描述:
  */
 class BGASwipeBackManager implements Application.ActivityLifecycleCallbacks {
+
     private static final BGASwipeBackManager sInstance = new BGASwipeBackManager();
+
+    /**
+     * Activity 实例集合
+     */
     private Stack<Activity> mActivityStack = new Stack<>();
+
+    /**
+     * 导致崩溃的 View
+     */
     private Set<Class<? extends View>> mProblemViewClassSet = new HashSet<>();
 
     public static BGASwipeBackManager getInstance() {
@@ -47,6 +56,12 @@ class BGASwipeBackManager implements Application.ActivityLifecycleCallbacks {
     private BGASwipeBackManager() {
     }
 
+    /**
+     * 初始化 注册Activity回调
+     *
+     * @param application
+     * @param problemViewClassList
+     */
     public void init(Application application, List<Class<? extends View>> problemViewClassList) {
         application.registerActivityLifecycleCallbacks(this);
 
@@ -56,6 +71,10 @@ class BGASwipeBackManager implements Application.ActivityLifecycleCallbacks {
             mProblemViewClassSet.addAll(problemViewClassList);
         }
     }
+
+
+    // =============================================================================================
+
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -86,6 +105,10 @@ class BGASwipeBackManager implements Application.ActivityLifecycleCallbacks {
     public void onActivityDestroyed(Activity activity) {
         mActivityStack.remove(activity);
     }
+
+
+    // =============================================================================================
+
 
     /**
      * 获取倒数第二个 Activity

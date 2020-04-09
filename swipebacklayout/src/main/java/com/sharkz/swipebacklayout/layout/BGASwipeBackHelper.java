@@ -62,13 +62,18 @@ public class BGASwipeBackHelper {
         initSwipeBackFinish();
     }
 
+
+    // =============================================================================================
+
+
     /**
      * 初始化滑动返回
      */
     private void initSwipeBackFinish() {
         if (mDelegate.isSupportSwipeBack()) {
-            mSwipeBackLayout = new BGASwipeBackLayout(mActivity);
+            mSwipeBackLayout = new BGASwipeBackLayout(mActivity); // 创建一个可以滑动的容器
             mSwipeBackLayout.attachToActivity(mActivity);
+            // 回调监听
             mSwipeBackLayout.setPanelSlideListener(new BGASwipeBackLayout.PanelSlideListener() {
                 @Override
                 public void onPanelSlide(View panel, float slideOffset) {

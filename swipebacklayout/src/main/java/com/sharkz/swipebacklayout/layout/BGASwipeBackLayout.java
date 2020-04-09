@@ -224,14 +224,16 @@ public class BGASwipeBackLayout extends ViewGroup {
 
         setSliderFadeColor(Color.TRANSPARENT);
 
+        // 将滑动阴影添加进来
         mShadowView = new BGASwipeBackShadowView(activity);
-
         addView(mShadowView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
+        // decorView
         ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
         mContentView = decorView.getChildAt(0);
-        decorView.removeView(mContentView);
-        decorView.addView(this);
+        decorView.removeView(mContentView);  // 移除以前的
+        decorView.addView(this);       // 添加新创建的
+        // 再将原有的内容添加进来 --> 相当于 在原有的基础上包装了一下 插入了一些操作
         addView(mContentView, 1, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
     }
 
