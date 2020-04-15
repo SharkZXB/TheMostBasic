@@ -1,4 +1,4 @@
-package com.sharkz.tool.kit;
+package com.sharkz.datastorage.sp;
 
 import android.app.Application;
 import android.content.Context;

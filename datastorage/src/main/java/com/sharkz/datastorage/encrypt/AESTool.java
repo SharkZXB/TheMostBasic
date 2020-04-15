@@ -1,4 +1,4 @@
-package com.sharkz.tool.kit.encrypt;
+package com.sharkz.datastorage.encrypt;
 
 /**
  * ================================================
