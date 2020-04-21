@@ -27,20 +27,24 @@ public class TopLevelApplication extends Application {
     // =============================================================================================
 
 
+    /**
+     * 得到应用上下文的Context，在应用创建时会首先调用；
+     *
+     * @param base
+     */
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+    }
+
+    /**
+     * 同样在应用创建时调用，但比attachBaseContext()要晚；
+     */
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
         appContext = application.getApplicationContext();
-    }
-
-    /**
-     * 但后台程序已经终止且资源还匮乏时候回调用这个方法。
-     * 好的应用程序一般会在这个方法中释放一些不必要的资源来应付当后台程序已经终止、前台应用程序内存还是不够时的情况。
-     */
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
     }
 
     /**
@@ -50,6 +54,26 @@ public class TopLevelApplication extends Application {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
+
+    /**
+     * 系统低内存时调用；
+     * 但后台程序已经终止且资源还匮乏时候回调用这个方法。
+     * 好的应用程序一般会在这个方法中释放一些不必要的资源来应付当后台程序已经终止、前台应用程序内存还是不够时的情况。
+     */
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+    }
+
+    /**
+     * 当终止应用程序对象时调用，不保证一定被调用，当程序被内核终止以便为其他应用程序释放资源时将不会提示，
+     * 并且不调用应用程序对象的 onTerminate 方法而直接终止程序。
+     */
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+    }
+
 
     /**
      * This method is for use in emulated process environments.  It will
@@ -66,15 +90,6 @@ public class TopLevelApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-    }
-
-    /**
-     * 当终止应用程序对象时调用，不保证一定被调用，当程序被内核终止以便为其他应用程序释放资源时将不会提示，
-     * 并且不调用应用程序对象的 onTerminate 方法而直接终止程序。
-     */
-    @Override
-    public void onTrimMemory(int level) {
-        super.onTrimMemory(level);
     }
 
 }

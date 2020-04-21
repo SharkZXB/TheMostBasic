@@ -17,8 +17,8 @@ import androidx.core.app.NotificationCompat;
  * @author chaychan
  * @description: Service adaptation for Android 8.0 or above
  * @date 2019/7/29  10:36
- *
- *
+ * <p>
+ * <p>
  * https://blog.csdn.net/weixin_39460667/article/details/82770164 这个地址是Service的博客 写的很好
  */
 public abstract class ServiceCompat extends Service {
@@ -33,21 +33,19 @@ public abstract class ServiceCompat extends Service {
             String channelName = getChannelName();
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_MIN);
             NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            if(manager!=null)
-            manager.createNotificationChannel(channel);
+            if (manager != null)
+                manager.createNotificationChannel(channel);
             startForeground(getChannelId(), getNotification());
         }
     }
 
     /**
      * Notification channelName
-     *
      */
     protected abstract String getChannelName();
 
     /**
      * Notification channelId,must not be 0
-     *
      */
     protected abstract int getChannelId();
 
@@ -55,7 +53,7 @@ public abstract class ServiceCompat extends Service {
     /**
      * Default content for notification , subclasses can be overwritten and returned
      */
-    public String getNotificationContent(){
+    public String getNotificationContent() {
         return "";
     }
 
@@ -98,11 +96,17 @@ public abstract class ServiceCompat extends Service {
     }
 
 
-    public static void startService(Context context, Intent intent){
+    /**
+     * 服务的启动
+     *
+     * @param context
+     * @param intent
+     */
+    public static void startService(Context context, Intent intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //适配安卓8.0
             context.startForegroundService(intent);
-        }else{
+        } else {
             context.startService(intent);
         }
     }

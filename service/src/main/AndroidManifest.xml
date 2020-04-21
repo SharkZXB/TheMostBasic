@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sharkz.service" />
+    package="com.sharkz.service">
+
+
+    <!-- 9.0 之后需要申请这个权限的 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+</manifest>

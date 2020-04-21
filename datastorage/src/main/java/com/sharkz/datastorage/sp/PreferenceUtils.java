@@ -19,7 +19,7 @@ public class PreferenceUtils {
     /**
      * 偏好设置 Name
      */
-    public static final String PREFERENCE_NAME = "shark_preference";
+    public static final String DEFAULT_PREFERENCE_NAME = "shark_preference";
 
     /**
      * 获取上下文 这里 用 application 接受 便于 后期替换 BaseApplication.getApplication() 表达式
@@ -43,7 +43,7 @@ public class PreferenceUtils {
     public static boolean putString(String key, String value) {
         checkContext();
         //获取shareprefrence对象
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         //获取shareprefrence的编辑器对象
         SharedPreferences.Editor editor = settings.edit();
         //通过编辑器对象往里面放入value
@@ -73,7 +73,7 @@ public class PreferenceUtils {
      */
     public static String getString(String key, String defaultValue) {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getString(key, defaultValue);
     }
 
@@ -87,7 +87,7 @@ public class PreferenceUtils {
      */
     public static boolean putInt(String key, int value) {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt(key, value);
         return editor.commit();
@@ -113,7 +113,7 @@ public class PreferenceUtils {
      */
     public static int getInt(String key, int defaultValue) {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getInt(key, defaultValue);
     }
 
@@ -127,7 +127,7 @@ public class PreferenceUtils {
      */
     public static boolean putLong(String key, long value) {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putLong(key, value);
         return editor.commit();
@@ -156,7 +156,7 @@ public class PreferenceUtils {
      */
     public static long getLong(String key, long defaultValue) {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getLong(key, defaultValue);
     }
 
@@ -170,7 +170,7 @@ public class PreferenceUtils {
      */
     public static boolean putFloat(String key, float value) {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putFloat(key, value);
         return editor.commit();
@@ -199,7 +199,7 @@ public class PreferenceUtils {
      */
     public static float getFloat(String key, float defaultValue) {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getFloat(key, defaultValue);
     }
 
@@ -213,7 +213,7 @@ public class PreferenceUtils {
      */
     public static boolean putBoolean(String key, boolean value) {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(key, value);
         return editor.commit();
@@ -247,7 +247,7 @@ public class PreferenceUtils {
      */
     public static boolean getBoolean(String key, boolean defaultValue) {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getBoolean(key, defaultValue);
     }
 
@@ -257,7 +257,7 @@ public class PreferenceUtils {
      */
     public static void cleanAllData() {
         checkContext();
-        SharedPreferences settings = application.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = application.getSharedPreferences(DEFAULT_PREFERENCE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.clear();
         editor.commit();
