@@ -11,5 +11,6 @@ package com.sharkz.themostbasic.git;
  */
 public class GitTest2 {
 
+    private String a="1234";
 
 }
