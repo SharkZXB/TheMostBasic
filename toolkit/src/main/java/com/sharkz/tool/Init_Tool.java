@@ -5,7 +5,6 @@ import android.app.Application;
 //import com.sharkz.tool.kit.DoraemonKitTool;
 import com.hjq.toast.ToastUtils;
 import com.sharkz.tool.kit.LoggerTool;
-import com.sharkz.tool.kit.PreferenceUtils;
 
 /**
  * ================================================
@@ -39,7 +38,7 @@ public class Init_Tool {
         /**
          * SP
          */
-        PreferenceUtils.initSP(application);
+      //  PreferenceUtils.initSP(application);
 
         /**
          * 哆啦A梦
