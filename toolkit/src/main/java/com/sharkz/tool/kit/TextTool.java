@@ -1,8 +1,13 @@
 package com.sharkz.tool.kit;
 
+import android.content.Context;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.util.TypedValue;
+import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 
 /**
@@ -56,6 +61,31 @@ public class TextTool {
         // 得到使用该paint写上text的时候,像素为多少
         int textLength = (int) paint.measureText(text);
         return textLength;
+    }
+
+
+    /**
+     * 获取TextView 的高度
+     *
+     * @param context     上下文
+     * @param text        显示的文本
+     * @param textSize    字体的大小
+     * @param deviceWidth 屏幕的宽度
+     * @return tv 的高度
+     */
+    public static int getHeightORWidth(@Nullable Context context, @Nullable String text, @Nullable int textSize, @Nullable int deviceWidth, @Nullable boolean isH) {
+        TextView textView = new TextView(context);
+        textView.setText(text);
+        // 如果没有以像素为单位给出textSize，请更改setTextSize()的第一个参数。
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(deviceWidth, View.MeasureSpec.AT_MOST);
+        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        textView.measure(widthMeasureSpec, heightMeasureSpec);
+        if (isH) {
+            return textView.getMeasuredHeight();
+        } else {
+            return textView.getMeasuredWidth();
+        }
     }
 
 }
