@@ -1,5 +1,9 @@
 package com.sharkz.datastorage.mmkv;
 
+import android.content.Context;
+
+import com.tencent.mmkv.MMKV;
+
 /**
  * ================================================
  * 作    者：SharkZ
@@ -10,6 +14,16 @@ package com.sharkz.datastorage.mmkv;
  * ================================================
  */
 public class MMKVCode {
+
+    /**
+     * 初始化
+     *
+     * @param context
+     */
+    public static void initMMKV(Context context) {
+        String rootDir = MMKV.initialize(context);
+        // System.out.println("mmkv root: " + rootDir);
+    }
 
 }
 

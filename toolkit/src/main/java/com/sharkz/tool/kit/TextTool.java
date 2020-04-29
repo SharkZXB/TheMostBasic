@@ -3,6 +3,7 @@ package com.sharkz.tool.kit;
 import android.content.Context;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
@@ -86,6 +87,35 @@ public class TextTool {
         } else {
             return textView.getMeasuredWidth();
         }
+    }
+
+    /**
+     * 根据内容 自动调整字体的大小
+     *
+     * @param view 显示文本的控件
+     * @param txt  显示的文本
+     */
+    public static void autoMatchFontSize(final TextView view, String txt) {
+        // 显示文本
+        view.setText(txt);
+        view.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                float vWidth = v.getWidth();                // view的宽度
+                float vHeight = v.getHeight();              // view的高度
+                TextPaint paint = view.getPaint();          // 画笔
+                String text = view.getText().toString();    // 文本内容
+                float textLen = paint.measureText(text);    // 文本长度
+                float oldSize = view.getTextSize();         // 字体大小
+                // 能显示的下就不调整了 显示不下才调整
+                if (vWidth < textLen && textLen != vWidth) {
+                    float size = vWidth * oldSize / textLen;
+                    // 设置字体大小时，必须以TypedValue.COMPLEX_UNIT_PX的类型设置，这是为了匹配view.getTextSize()，
+                    // 因为这个方法得到的字体也是以px为单位的，而view.setTextSize(size)默认是以sp为单位
+                    view.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+                }
+            }
+        });
     }
 
 }

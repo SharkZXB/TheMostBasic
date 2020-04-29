@@ -41,14 +41,11 @@ dependencies {
     // 以及对bar的其他设置，详见README。简书请参考：http://www.jianshu.com/p/2a884e211a62
     // https://github.com/gyf-dev/ImmersionBar
     // 基础依赖包，必须要依赖
-    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
     // fragment快速实现（可选）
     // implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
     // kotlin扩展（可选）
     // implementation 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
-
-
-    api 'com.sharkz.sdk:global:1.0.0'
 
 }
 

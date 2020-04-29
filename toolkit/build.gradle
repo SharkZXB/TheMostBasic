@@ -62,7 +62,7 @@ dependencies {
 
     // butterknife --> 准备 全面使用 ViewBinding
     // https://github.com/JakeWharton/butterknife
-    api 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
     // 日志框架

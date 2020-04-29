@@ -2,8 +2,8 @@ package com.sharkz.themostbasic;
 
 import android.app.Application;
 
-import com.sharkz.global.LoggerTool;
 import com.sharkz.swipebacklayout.layout.BGASwipeBackHelper;
+import com.sharkz.tool.kit.LoggerTool;
 
 /**
  * ================================================
@@ -19,7 +19,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
 
         BGASwipeBackHelper.init(this,null);
         LoggerTool.getInstance().init();
