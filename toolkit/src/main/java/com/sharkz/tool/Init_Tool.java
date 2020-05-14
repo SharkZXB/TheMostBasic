@@ -4,7 +4,6 @@ import android.app.Application;
 
 //import com.sharkz.tool.kit.DoraemonKitTool;
 import com.hjq.toast.ToastUtils;
-import com.sharkz.tool.kit.LoggerTool;
 
 /**
  * ================================================
@@ -44,11 +43,6 @@ public class Init_Tool {
          * 哆啦A梦
          */
        // DoraemonKitTool.init(application);
-
-        /**
-         * 日志
-         */
-        LoggerTool.getInstance().init();
 
         /**
          * Toast
