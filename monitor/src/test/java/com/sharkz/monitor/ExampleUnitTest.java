@@ -1,4 +1,4 @@
-package com.sharkz.datastorage;
+package com.sharkz.monitor;
 
 import org.junit.Test;
 
