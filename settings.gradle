@@ -1,2 +1,3 @@
 rootProject.name='TheMostBasic'
 include ':app', ':arouter', ':service', ':smallestwidth', ':swipebacklayout', ':toolkit', ':monitor'
+include ':permission'

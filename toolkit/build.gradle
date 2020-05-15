@@ -56,10 +56,6 @@ dependencies {
     // https://github.com/getActivity/ToastUtils
     api 'com.hjq:toast:8.0'
 
-    // 权限
-    // https://github.com/yanzhenjie/AndPermission
-    api 'com.yanzhenjie:permission:2.0.3'
-
     // butterknife --> 准备 全面使用 ViewBinding
     // https://github.com/JakeWharton/butterknife
     annotationProcessor 'com.jakewharton:butterknife:10.2.1'
