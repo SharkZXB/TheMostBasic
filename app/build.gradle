@@ -34,5 +34,6 @@ dependencies {
     implementation project(path: ':toolkit')
     implementation project(path: ':swipebacklayout')
     implementation project(path: ':monitor')
+    implementation project(path: ':permission')
 
 }
