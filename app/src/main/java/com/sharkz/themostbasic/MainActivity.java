@@ -2,13 +2,15 @@ package com.sharkz.themostbasic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
-import com.sharkz.themostbasic.reflect.ReflectClass;
+import com.sharkz.monitor.crashlog.CrashLogFileUtils;
 import com.sharkz.tool.kit.TextTool;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.runtime.Permission;
 
 /**
  * ================================================
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     public TextView mTextView;
 
+    String str;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,20 +38,32 @@ public class MainActivity extends AppCompatActivity {
         TextTool.autoMatchFontSize(mTextView, "我是谁我是谁我是谁我是谁我是谁我是谁我是谁");
 
 
-        try {
-            // 创建对象
-            ReflectClass.reflectNewInstance();
-            // 反射私有的构造方法
-            ReflectClass.reflectPrivateConstructor();
-            // 反射私有属性
-            ReflectClass.reflectPrivateField();
-            // 反射私有方法
-            ReflectClass.reflectPrivateMethod();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        Log.d(TAG," zenmode = " + ReflectClass.getZenMode());
-    }
 
+      findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              //throw new NullPointerException("测试 crash_log ");
+              str.substring(0,5);
+          }
+      });
+
+
+        Log.i(TAG, "onCreate: 获取到的数据 ---> \n\n "+ CrashLogFileUtils.readLogText());
+
+
+
+        AndPermission.with(this)
+                .runtime()
+                .permission(Permission.Group.STORAGE)
+                .onGranted(permissions -> {
+                    // Storage permission are allowed.
+                })
+                .onDenied(permissions -> {
+                    // Storage permission are not allowed.
+                })
+                .start();
+
+
+    }
 
 }

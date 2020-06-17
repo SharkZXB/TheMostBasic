@@ -3,7 +3,6 @@ package com.sharkz.tool;
 import android.app.Application;
 
 //import com.sharkz.tool.kit.DoraemonKitTool;
-import com.hjq.toast.ToastUtils;
 
 /**
  * ================================================
@@ -43,11 +42,6 @@ public class Init_Tool {
          * 哆啦A梦
          */
        // DoraemonKitTool.init(application);
-
-        /**
-         * Toast
-         */
-        ToastUtils.init(application);
 
         /**
          * 内存泄漏

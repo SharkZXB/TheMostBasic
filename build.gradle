@@ -21,7 +21,7 @@ buildscript {
         // 因为Gradle并不是专门为构建Android项目而开发的，java，c++等很多项目都可以使用Gradle来构建。
         // 因此如果我们要想使用它来构建Android项目，则需要声明com.android.tools.build:gradle:2.2.2这个插件。
         // 其中，最后面的部分是插件的版本号。
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:4.0.0'
         
 
         // NOTE: Do not place your application dependencies here; they belong

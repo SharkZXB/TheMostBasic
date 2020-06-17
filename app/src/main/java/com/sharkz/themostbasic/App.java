@@ -3,6 +3,7 @@ package com.sharkz.themostbasic;
 import android.app.Application;
 
 import com.sharkz.monitor.LoggerTool;
+import com.sharkz.monitor.crashlog.SharkCrashLog;
 import com.sharkz.swipebacklayout.layout.BGASwipeBackHelper;
 
 /**
@@ -20,8 +21,10 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        BGASwipeBackHelper.init(this,null);
+        BGASwipeBackHelper.init(this, null);
         LoggerTool.getInstance().init();
+
+        SharkCrashLog.init(this);
 
     }
 }

@@ -52,10 +52,6 @@ dependencies {
     debugApi 'com.squareup.leakcanary:leakcanary-android:2.2'
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
 
-    // Toast框架
-    // https://github.com/getActivity/ToastUtils
-    api 'com.hjq:toast:8.0'
-
     // butterknife --> 准备 全面使用 ViewBinding
     // https://github.com/JakeWharton/butterknife
     annotationProcessor 'com.jakewharton:butterknife:10.2.1'
