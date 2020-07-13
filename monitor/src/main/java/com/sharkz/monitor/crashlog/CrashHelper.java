@@ -38,7 +38,10 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
+
+        // 获取设备的详情
         String deviceInfo = collectDeviceInfo();
+        // 获取crash详情
         String crashInfo = collectCrashInfo(e);
 
         // 保存信息到文件
@@ -46,7 +49,7 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
         String currentTime = formatter.format(new Date());
         CrashLogFileUtils.writeLogFile(currentTime + "\n" + deviceInfo + "\n" + crashInfo, CrashLogConfig.getInstance().getCrashName());
 
-        //延迟2秒杀进程
+        //延迟2秒杀进程 用于数据保存
         SystemClock.sleep(2000);
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
@@ -80,6 +83,7 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
      */
     private String collectDeviceInfo() {
         StringBuilder sb = new StringBuilder();
+
         //App版本
         sb.append("App Version: ");
         sb.append(BuildConfig.VERSION_NAME);
@@ -107,6 +111,9 @@ public class CrashHelper implements Thread.UncaughtExceptionHandler {
         } else {
             sb.append(Build.CPU_ABI);
         }
+
+        //屏幕刷新频率
+        //
         return sb.toString();
     }
 }
