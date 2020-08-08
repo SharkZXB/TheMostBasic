@@ -33,6 +33,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation project(path: ':crashlib')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -40,4 +41,8 @@ dependencies {
     implementation project(path: ':monitor')
     implementation project(path: ':permission')
 
+    // 开发工具
+    // 通过debugImplementation方式添加依赖只在debug模式生效，release模式不会生效。
+    // https://github.com/giswangsj/CrashCanary
+    debugImplementation  'com.github.giswangsj:CrashCanary:1.0.0'
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.sharkz.crashlib">
+
+    <application>
+
+        <!-- 日志详情界面 -->
+        <activity
+            android:name=".CrashLogDetailActivity"
+            android:screenOrientation="landscape" />
+
+        <!-- 日志列表界面 -->
+        <activity android:name=".CrashLogListActivity" />
+
+        <!-- 异常发生时显示的界面-->
+        <activity
+            android:name=".ShowExceptionActivity"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:process=":exception"
+            android:screenOrientation="sensor" />
+
+        <provider
+            android:name=".CrashFileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"
+                tools:replace="android:resource" />
+        </provider>
+    </application>
+
+</manifest>

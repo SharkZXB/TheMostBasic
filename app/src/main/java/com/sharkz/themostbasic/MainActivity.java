@@ -7,10 +7,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.sharkz.crashlib.CrashManager;
+import com.sharkz.monitor.LoggerTool;
 import com.sharkz.monitor.crashlog.CrashLogFileUtils;
+import com.sharkz.monitor.crashlog.SharkCrashLog;
 import com.sharkz.tool.kit.TextTool;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 /**
  * ================================================
@@ -35,35 +42,51 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTextView = findViewById(R.id.tv);
-        TextTool.autoMatchFontSize(mTextView, "我是谁我是谁我是谁我是谁我是谁我是谁我是谁");
+
+        findViewById(R.id.tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                throw new NullPointerException(" 测试 空指针 ");
+
+//                try {
+//                    throw new NullPointerException(" 测试 空指针 ");
+//                } catch (Exception e) {
+//                   // Log.i(TAG, "onClick: collectCrashInfo"+collectCrashInfo(e));
+                    // LoggerTool.logDEBUG(collectCrashInfo(e));
+//                }
+            }
+        });
+
+
+        findViewById(R.id.tv2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CrashManager.jump2CrashLogListActivity(MainActivity.this);
+            }
+        });
+
+    }
 
 
 
-      findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              //throw new NullPointerException("测试 crash_log ");
-              str.substring(0,5);
-          }
-      });
-
-
-        Log.i(TAG, "onCreate: 获取到的数据 ---> \n\n "+ CrashLogFileUtils.readLogText());
-
-
-
-        AndPermission.with(this)
-                .runtime()
-                .permission(Permission.Group.STORAGE)
-                .onGranted(permissions -> {
-                    // Storage permission are allowed.
-                })
-                .onDenied(permissions -> {
-                    // Storage permission are not allowed.
-                })
-                .start();
-
-
+    /**
+     * 获取异常信息
+     */
+    private String collectCrashInfo(Exception ex) {
+        if (ex == null) return "";
+        Writer writer = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(writer);
+        ex.printStackTrace(printWriter);
+        Throwable throwable = ex.getCause();
+        while (throwable != null) {
+            throwable.printStackTrace(printWriter);
+            throwable = throwable.getCause();//逐级获取错误信息
+        }
+        String crashInfo = writer.toString();
+        printWriter.close();
+        return crashInfo;
     }
 
 }
