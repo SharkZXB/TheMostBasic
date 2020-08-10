@@ -30,11 +30,16 @@ import java.util.zip.ZipOutputStream;
  */
 public class CrashFileTool {
 
-    private final static String TAG = "CrashFileHelper";
+    // private final static String TAG = "CrashFileHelper";
+
+    /**
+     * 这个和 manifest 里面的要一样
+     */
     public static final String FILE_PROVIDER_NAME = "fileprovider";
 
     /**
      * 获取文件对应的URI
+     *
      * @param context
      * @param file
      * @return
@@ -43,8 +48,7 @@ public class CrashFileTool {
         Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //data是file类型,忘了复制过来
-            uri = FileProvider.getUriForFile(context, context.getPackageName() + "."+FILE_PROVIDER_NAME,
-                    file);
+            uri = FileProvider.getUriForFile(context, context.getPackageName() + "." + FILE_PROVIDER_NAME, file);
         } else {
             uri = Uri.fromFile(file);
         }
@@ -80,7 +84,7 @@ public class CrashFileTool {
             zos.flush();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e(TAG, "zip file failed err: " + e.getMessage());
+            // Log.e(TAG, "zip file failed err: " + e.getMessage());
         } finally {
             try {
                 if (zos != null) {
@@ -95,9 +99,17 @@ public class CrashFileTool {
     }
 
 
-    private static void recursionZip(ZipOutputStream zipOut, File file, String baseDir) throws Exception {
+    /**
+     * 递归压缩
+     *
+     * @param zipOut
+     * @param file
+     * @param baseDir
+     * @throws Exception
+     */
+    public static void recursionZip(ZipOutputStream zipOut, File file, String baseDir) throws Exception {
         if (file.isDirectory()) {
-            Log.i(TAG, "the file is dir name -->>" + file.getName() + " the baseDir-->>>" + baseDir);
+            // Log.i(TAG, "the file is dir name -->>" + file.getName() + " the baseDir-->>>" + baseDir);
             File[] files = file.listFiles();
             for (File fileSec : files) {
                 if (fileSec == null) {
@@ -105,15 +117,15 @@ public class CrashFileTool {
                 }
                 if (fileSec.isDirectory()) {
                     baseDir = file.getName() + File.separator + fileSec.getName() + File.separator;
-                    Log.i(TAG, "basDir111-->>" + baseDir);
+                    // Log.i(TAG, "basDir111-->>" + baseDir);
                     recursionZip(zipOut, fileSec, baseDir);
                 } else {
-                    Log.i(TAG, "basDir222-->>" + baseDir);
+                    // Log.i(TAG, "basDir222-->>" + baseDir);
                     recursionZip(zipOut, fileSec, baseDir);
                 }
             }
         } else {
-            Log.i(TAG, "the file name is -->>" + file.getName() + " the base dir -->>" + baseDir);
+            // Log.i(TAG, "the file name is -->>" + file.getName() + " the base dir -->>" + baseDir);
             byte[] buf = new byte[2048];
             InputStream input = new BufferedInputStream(new FileInputStream(file));
             zipOut.putNextEntry(new ZipEntry(baseDir + file.getName()));
@@ -124,10 +136,6 @@ public class CrashFileTool {
             input.close();
         }
     }
-
-
-    // =============================================================================================
-
 
     /**
      * 将log日志写入本地文件

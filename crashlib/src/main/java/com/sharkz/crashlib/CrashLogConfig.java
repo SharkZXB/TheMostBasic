@@ -16,15 +16,49 @@ import java.io.File;
  */
 public class CrashLogConfig {
 
-    private boolean writeLog = false;   // 日志是否保存在SDCard 默认保存在App下
-    private String fileName = "log.txt";  //log日志的文件名称
-    private String folderName = "log";   // 文件夹名字
-    private String crashName = "crash.txt";  //
-    private boolean isSaveExternal = false;  //
-    private long saveFileTime = 1 * 24 * 60 * 60 * 1000;  //一天
-    private long fileSize = 100000;   // 日志文件的大小，默认0.1M
+
+    /**
+     * 这里记得修改成自己的 App crash log file name 默认的文件夹名字
+     */
+    public static final String CRASH_LOG_LOCAL_FILE_NAME = "shark_crash_log";
+
+    /**
+     * 日志是否保存在SDCard 默认保存在App下
+     */
+    private boolean writeLog = false;
+
+    /**
+     * 是否保存在外部存储
+     */
+    private boolean isSaveExternal = false;
+
+    /**
+     * log日志的文件名称
+     */
+    private String fileName = "log.txt";
+
+    /**
+     * log日志的文件名称
+     */
+    private String crashName = "crash.txt";
+
+    /**
+     * 文件夹名字
+     */
+    private String folderName = "log";
+
+    /**
+     * 设置清空日志的时间 默认是一天清理一次日志
+     */
+    private long saveFileTime = 1 * 24 * 60 * 60 * 1000;
+
+    /**
+     * 日志文件的大小，默认0.1M
+     */
+    private long fileSize = 100000;
+
     private String logFilePath;       // crash log 存储的位置
-    private boolean isJump2ShowExceptionActivity =false; // 捕获异常之后 跳转到界面展示
+    private boolean isJump2ShowExceptionActivity = false; // 捕获异常之后 跳转到界面展示
 
 
     // =============================================================================================
@@ -118,18 +152,25 @@ public class CrashLogConfig {
         return this;
     }
 
-    public CrashLogConfig setJump2ShowExceptionActivity(boolean isJump2ShowExceptionActivity){
-        this.isJump2ShowExceptionActivity=isJump2ShowExceptionActivity;
+    public CrashLogConfig setJump2ShowExceptionActivity(boolean isJump2ShowExceptionActivity) {
+        this.isJump2ShowExceptionActivity = isJump2ShowExceptionActivity;
         return this;
     }
 
-    public boolean isJump2ShowExceptionActivity(){
+    public boolean isJump2ShowExceptionActivity() {
         return isJump2ShowExceptionActivity;
     }
+
 
     // =============================================================================================
 
 
+    /**
+     * Build
+     *
+     * @param context 上下文
+     * @return
+     */
     public CrashLogConfig build(Context context) {
         if (isSaveExternal) {
             // 优先保存到SD卡中
@@ -139,6 +180,7 @@ public class CrashLogConfig {
                 logFilePath = context.getFilesDir().getAbsolutePath() + File.separator + folderName + File.separator;
             }
         } else {
+            // 保存在 内置存储中
             logFilePath = context.getFilesDir().getAbsolutePath() + File.separator + folderName + File.separator;
         }
 

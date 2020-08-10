@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.sharkz.crashlib.CrashManager;
 import com.sharkz.monitor.LoggerTool;
-import com.sharkz.monitor.crashlog.SharkCrashLog;
 
 /**
  * ================================================
@@ -22,7 +21,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        SharkCrashLog.init(this);
         LoggerTool.getInstance().init();
 
         // 注册

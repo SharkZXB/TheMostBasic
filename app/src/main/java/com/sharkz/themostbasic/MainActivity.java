@@ -3,18 +3,10 @@ package com.sharkz.themostbasic;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.sharkz.crashlib.CrashManager;
-import com.sharkz.monitor.LoggerTool;
-import com.sharkz.monitor.crashlog.CrashLogFileUtils;
-import com.sharkz.monitor.crashlog.SharkCrashLog;
-import com.sharkz.tool.kit.TextTool;
-import com.yanzhenjie.permission.AndPermission;
-import com.yanzhenjie.permission.runtime.Permission;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;

@@ -21,14 +21,14 @@ public class ExceptionCaughtHandler implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
 
-        // 获取异常详情
-        String crashInfo = CrashHelper.buildCrashInfo(ex);
-
         // 保存日志到本地信息
         CrashHelper.saveCrashLogToLocal(thread, ex);
 
         // debug模式下才显性的展示崩溃信息
         if (CrashLogConfig.getInstance().isJump2ShowExceptionActivity()) {
+            // 获取异常详情
+            String crashInfo = CrashHelper.buildCrashInfo(ex);
+            // 进入显示异常的界面 新的进程
             ShowExceptionActivity.showException(crashInfo);
         }
 

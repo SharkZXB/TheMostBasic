@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Environment;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -168,25 +167,5 @@ public class CrashHelper {
         String currentTime = formatter.format(new Date());
         CrashFileTool.writeLogFile(currentTime + "\n" + deviceInfo + "\n" + crashInfo, CrashLogConfig.getInstance().getCrashName());
     }
-
-    /**
-     * get default crash log dir
-     *
-     * @return dir
-     */
-//    public  static String getDefaultCrashDir() {
-//        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
-//                && CrashManager.getApplication().getExternalCacheDir() != null) {
-//            return CrashManager.getApplication().getExternalCacheDir()
-//                    + FILE_SEP
-//                    + "crash_log"
-//                    + FILE_SEP;
-//        } else {
-//            return CrashManager.getApplication().getCacheDir()
-//                    + FILE_SEP
-//                    + "crash_log"
-//                    + FILE_SEP;
-//        }
-//    }
 
 }

@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import static com.sharkz.crashlib.CrashLogConfig.CRASH_LOG_LOCAL_FILE_NAME;
 
 /**
  * ================================================
@@ -24,15 +28,6 @@ public class CrashManager {
     public static Application getApplication() {
         return application;
     }
-
-
-    // =============================================================================================
-
-
-    /**
-     * 这里记得修改成自己的 App crash log file name
-     */
-    public static final String CRASH_LOG_LOCAL_FILE_NAME = "shark_crash_log";
 
     /**
      * 初始化
@@ -63,10 +58,10 @@ public class CrashManager {
         CrashLogConfig.getInstance()
                 .isWriteLog(true)//是否在文件中记录，默认不记录
                 .isSaveExternal(true) // 默认保存在应用内
-                .setFileName(fileName)
-                .setSaveFileTime(24 * 60 * 60 * 1000)//设置清空日志的时间 默认是一天清理一次日志
-                .setCrashName("crash_" + fileName)
+                .setFileName(fileName) // 保存的文件名
+                .setCrashName("crash_" + fileName) // 保存的文件名
                 .setFolderName(shark_crash_log)  // 文件夹的名字
+                .setSaveFileTime(24 * 60 * 60 * 1000)//设置清空日志的时间 默认是一天清理一次日志
                 .fileSize(100 * 1024)//日志文件的大小，默认0.1M,以bytes为单位
                 .setJump2ShowExceptionActivity(true) // 界面跳转
                 .build(application)
@@ -82,7 +77,7 @@ public class CrashManager {
      *
      * @param activity 调用分享的activity
      */
-    public static void shareCrashFile(Activity activity) {
+    public static void shareCrashFile(@NonNull Activity activity) {
         if (application == null) {
             throw new IllegalStateException("CrashManager尚未被初始化，请先调用init完成初始化！！！！");
         }
@@ -94,7 +89,10 @@ public class CrashManager {
      *
      * @param activity activity
      */
-    public static void jump2CrashLogListActivity(Activity activity) {
+    public static void jump2CrashLogListActivity(@NonNull Activity activity) {
+        if (application == null) {
+            throw new IllegalStateException("CrashManager尚未被初始化，请先调用init完成初始化！！！！");
+        }
         Intent intent = new Intent(activity, CrashLogListActivity.class);
         activity.startActivity(intent);
     }
