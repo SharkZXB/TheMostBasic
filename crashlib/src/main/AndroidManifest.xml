@@ -8,10 +8,13 @@
         <!-- 日志详情界面 -->
         <activity
             android:name=".CrashLogDetailActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:theme="@style/Crash_AppTheme" />
 
         <!-- 日志列表界面 -->
-        <activity android:name=".CrashLogListActivity" />
+        <activity
+            android:name=".CrashLogListActivity"
+            android:theme="@style/Crash_AppTheme" />
 
         <!-- 异常发生时显示的界面-->
         <activity

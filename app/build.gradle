@@ -44,5 +44,5 @@ dependencies {
     // 开发工具
     // 通过debugImplementation方式添加依赖只在debug模式生效，release模式不会生效。
     // https://github.com/giswangsj/CrashCanary
-    debugImplementation  'com.github.giswangsj:CrashCanary:1.0.0'
+   // debugImplementation  'com.github.giswangsj:CrashCanary:1.0.0'
 }

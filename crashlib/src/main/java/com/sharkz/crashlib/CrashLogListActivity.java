@@ -1,17 +1,18 @@
 package com.sharkz.crashlib;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ================================================
@@ -24,26 +25,83 @@ import java.io.File;
  */
 public class CrashLogListActivity extends AppCompatActivity {
 
-    private RecyclerView rv;
-    private File[] fileList;
+    private List<File> fileList = new ArrayList<>();
+    private TextView tvEdit;
+    private Group group_CheckAll_Delete;
+
+    private CrashLogListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crash_log_list);
 
-        rv = findViewById(R.id.rv);
-        fileList = CrashFileTool.getLogFileList();
+        RecyclerView rv = findViewById(R.id.rv);
+        tvEdit = findViewById(R.id.tvEdit);
+        group_CheckAll_Delete = findViewById(R.id.group_CheckAll_Delete);
 
-        if (fileList != null && fileList.length > 0) {
+        //添加数据
+        fileList.addAll(CrashFileTool.getLogFileListV2());
+
+        if (fileList.size() > 0) {
             // 刷新列表
             LinearLayoutManager manager = new LinearLayoutManager(this);
             manager.setOrientation(RecyclerView.VERTICAL);
             rv.setLayoutManager(manager);
-            CrashLogListAdapter adapter = new CrashLogListAdapter(CrashLogListActivity.this, fileList);
+            adapter = new CrashLogListAdapter(CrashLogListActivity.this, fileList);
             rv.setAdapter(adapter);
         }
 
+    }
+
+    /**
+     * 编辑
+     */
+    public void onClickEdit(View view) {
+        if (adapter == null) {
+            return;
+        }
+        if (adapter.setEdit()) {
+            tvEdit.setText("取消");
+            group_CheckAll_Delete.setVisibility(View.VISIBLE);
+        } else {
+            tvEdit.setText("编辑");
+            group_CheckAll_Delete.setVisibility(View.GONE);
+            adapter.cancelCheckAll();
+        }
+    }
+
+    /**
+     * 全选
+     */
+    public void onCLickCheckAll(View view) {
+        if (adapter != null) {
+            adapter.checkAll();
+        }
+    }
+
+    /**
+     * 删除
+     */
+    public void onCLickDelete(View view) {
+        List<File> items = adapter.getCheckedItem();
+        if (items.size() < 1) {
+            Toast.makeText(CrashLogListActivity.this, "至少选中一个数据", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //
+        for (int i = 0; i < items.size(); i++) {
+            CrashFileTool.deleteFile(items.get(i));
+        }
+
+        // 操作 隐藏
+        onClickEdit(null);
+
+        // 刷新列表
+        fileList.clear();
+        fileList.addAll(CrashFileTool.getLogFileListV2());
+        adapter.notifyDataSetChanged();
     }
 
 }

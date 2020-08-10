@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 
 import java.io.BufferedInputStream;
@@ -16,6 +17,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -216,6 +220,22 @@ public class CrashFileTool {
     }
 
     /**
+     * 获取所有的日志文件
+     */
+    public static List<File> getLogFileListV2() {
+        List<File> list = new ArrayList<>();
+        File file = new File(CrashLogConfig.getInstance().getLogFilePath());
+        if (!file.isFile()) {
+            File[] listFiles = file.listFiles();
+            if (listFiles!=null) {
+                return Arrays.asList(listFiles);
+            }
+        }
+        return list;
+    }
+
+
+    /**
      * 删除过期的日志文件
      */
     public static void deleteOverdueFile() {
@@ -229,6 +249,17 @@ public class CrashFileTool {
                     file.delete();
                 }
             }
+        }
+    }
+
+    /**
+     * 删除指定文件
+     *
+     * @param file 目标文件
+     */
+    public static void deleteFile(@NonNull File file) {
+        if (file.exists()) {
+            file.delete();
         }
     }
 
