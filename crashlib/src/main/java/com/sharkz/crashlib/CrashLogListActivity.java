@@ -43,24 +43,28 @@ public class CrashLogListActivity extends AppCompatActivity {
         //添加数据
         fileList.addAll(CrashFileTool.getLogFileListV2());
 
-        if (fileList.size() > 0) {
-            // 刷新列表
-            LinearLayoutManager manager = new LinearLayoutManager(this);
-            manager.setOrientation(RecyclerView.VERTICAL);
-            rv.setLayoutManager(manager);
-            adapter = new CrashLogListAdapter(CrashLogListActivity.this, fileList);
-            rv.setAdapter(adapter);
-        }
+        // 刷新列表
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(RecyclerView.VERTICAL);
+        rv.setLayoutManager(manager);
+        adapter = new CrashLogListAdapter(CrashLogListActivity.this, fileList);
+        rv.setAdapter(adapter);
 
     }
+
+
+    // =============================================================================================
+
 
     /**
      * 编辑
      */
     public void onClickEdit(View view) {
-        if (adapter == null) {
+        if (fileList.size() < 1) {
+            Toast.makeText(this, "暂无数据可操作", Toast.LENGTH_SHORT).show();
             return;
         }
+
         if (adapter.setEdit()) {
             tvEdit.setText("取消");
             group_CheckAll_Delete.setVisibility(View.VISIBLE);
@@ -75,9 +79,7 @@ public class CrashLogListActivity extends AppCompatActivity {
      * 全选
      */
     public void onCLickCheckAll(View view) {
-        if (adapter != null) {
-            adapter.checkAll();
-        }
+        adapter.checkAll();
     }
 
     /**
@@ -90,7 +92,6 @@ public class CrashLogListActivity extends AppCompatActivity {
             return;
         }
 
-        //
         for (int i = 0; i < items.size(); i++) {
             CrashFileTool.deleteFile(items.get(i));
         }

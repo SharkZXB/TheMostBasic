@@ -80,7 +80,7 @@ public class CrashLogListAdapter extends RecyclerView.Adapter<CrashLogListAdapte
     /**
      * 全选
      */
-    public boolean checkAll() {
+    public void checkAll() {
         if (isCheckAll) {
             for (int i = 0; i < fileList.size(); i++) {
                 checkMap.put(i, false);
@@ -92,7 +92,6 @@ public class CrashLogListAdapter extends RecyclerView.Adapter<CrashLogListAdapte
         }
         isCheckAll = !isCheckAll;
         notifyDataSetChanged();
-        return isCheckAll;
     }
 
     /**
@@ -117,6 +116,7 @@ public class CrashLogListAdapter extends RecyclerView.Adapter<CrashLogListAdapte
         }
         return list;
     }
+
 
     // =============================================================================================
 
