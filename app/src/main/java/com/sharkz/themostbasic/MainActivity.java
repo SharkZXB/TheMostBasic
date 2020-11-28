@@ -3,10 +3,12 @@ package com.sharkz.themostbasic;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.sharkz.crashlib.CrashManager;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 //                    throw new NullPointerException(" 测试 空指针 ");
 //                } catch (Exception e) {
 //                   // Log.i(TAG, "onClick: collectCrashInfo"+collectCrashInfo(e));
-                    // LoggerTool.logDEBUG(collectCrashInfo(e));
+                // LoggerTool.logDEBUG(collectCrashInfo(e));
 //                }
             }
         });
@@ -60,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
 
     /**

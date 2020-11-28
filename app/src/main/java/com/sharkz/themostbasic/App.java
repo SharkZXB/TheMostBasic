@@ -26,4 +26,9 @@ public class App extends Application {
         // 注册
         CrashManager.init(this);
     }
+
+
+
+
+
 }
